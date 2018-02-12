@@ -52,7 +52,6 @@ def start():
 			line2 = "Welcome to "+user.name 
 			line3 = ('[COLOR white]%s[/COLOR]'%usern)
 			xbmcgui.Dialog().ok(user.name, line1, line2, line3)
-			tvguidesetup()
 			addonsettings('ADS2','')
 			xbmc.executebuiltin('Container.Refresh')
 			home()
@@ -63,8 +62,6 @@ def start():
 			tools.addDir('Account Information','url',6,icon,fanart,'')
 			tools.addDir('Live TV','live',1,icon,fanart,'')
 			tools.addDir('Catchup TV','url',12,icon,fanart,'')
-			if xbmc.getCondVisibility('System.HasAddon(pvr.iptvsimple)'):
-				tools.addDir('TV Guide','pvr',7,icon,fanart,'')
 			tools.addDir('VOD','vod',3,icon,fanart,'')
 			tools.addDir('Search','url',5,icon,fanart,'')
 			tools.addDir('Settings','url',8,icon,fanart,'')
@@ -74,8 +71,6 @@ def home():
 	tools.addDir('Account Information','url',6,icon,fanart,'')
 	tools.addDir('Live TV','live',1,icon,fanart,'')
 	tools.addDir('Catchup TV','url',12,icon,fanart,'')
-	if xbmc.getCondVisibility('System.HasAddon(pvr.iptvsimple)'):
-		tools.addDir('TV Guide','pvr',7,icon,fanart,'')
 	tools.addDir('VOD','vod',3,icon,fanart,'')
 	tools.addDir('Search','',5,icon,fanart,'')
 	tools.addDir('Settings','url',8,icon,fanart,'')
@@ -497,13 +492,6 @@ def correctPVR():
 	moist.setSetting(id='epgCache', value="false")
 	xbmc.executebuiltin("Container.Refresh")
 
-	
-def tvguidesetup():
-		dialog = xbmcgui.Dialog().yesno(user.name,'Would You like us to Setup the TV Guide for You?')
-		if dialog:
-				pvrsetup()
-				xbmcgui.Dialog().ok(user.name, 'PVR Integration Complete')
-
 def num2day(num):
 	if num =="0":
 		day = 'monday'
@@ -522,7 +510,6 @@ def num2day(num):
 	return day
 	
 def extras():
-	tools.addDir('Integrate With TV Guide','tv',10,icon,fanart,'')
 	tools.addDir('Run a Speed Test','ST',10,icon,fanart,'')
 	tools.addDir('Clear Cache','CC',10,icon,fanart,'')
 	
